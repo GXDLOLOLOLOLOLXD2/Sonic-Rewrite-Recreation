@@ -8,7 +8,7 @@ import engine.backend.Discord;
 import engine.states.CreditsState;
 import engine.states.PlayState;
 import engine.states.LoadingState;
-import engine.states.CustomState;
+import modrecriationsource.CustomState;
 import engine.options.OptionsState;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.transition.FlxTransitionableState;
