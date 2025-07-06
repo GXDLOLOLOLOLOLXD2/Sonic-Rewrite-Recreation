@@ -1,15 +1,15 @@
 // WARNING: This shit is genuinely held together with duct tape and prayers. Im not even kidding this code is so fucking ass.
 
-import backend.Controls;
-import backend.Discord;
+import engine.backend.Controls;
+import engine.backend.Discord;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.sound.FlxSound;
 import flixel.math.FlxMath;
 import hxvlc.flixel.FlxVideoSprite;
-import objects.Bar;
-import objects.MaigoSpeaker;
+import modrecriationsource.objects.Bar;
+import modrecriationsource.objects.MaigoSpeaker;
 import Std;
 import String;
 
