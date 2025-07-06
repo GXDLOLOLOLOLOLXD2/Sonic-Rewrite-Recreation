@@ -3,7 +3,7 @@ import flixel.text.FlxText;
 import flixel.text.FlxTextFormat;
 import flixel.text.FlxTextFormatMarkerPair;
 import flixel.addons.transition.FlxTransitionableState;
-import modrecriationsource.states.CustomState;
+import modrecriationsource.CustomState;
 import engine.backend.Discord;
 import engine.backend.MusicBeatState;
 import engine.states.PlayState;
