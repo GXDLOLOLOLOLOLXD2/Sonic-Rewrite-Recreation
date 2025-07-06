@@ -1,20 +1,20 @@
 import openfl.Lib;
-import backend.ClientPrefs;
-import backend.Highscore;
-import backend.Controls;
-import backend.Song;
-import backend.MusicBeatState;
-import backend.Discord;
-import states.CreditsState;
-import states.PlayState;
-import states.LoadingState;
-import states.CustomState;
-import options.OptionsState;
+import engine.backend.ClientPrefs;
+import engine.backend.Highscore;
+import engine.backend.Controls;
+import engine.backend.Song;
+import engine.backend.MusicBeatState;
+import engine.backend.Discord;
+import engine.states.CreditsState;
+import engine.states.PlayState;
+import engine.states.LoadingState;
+import engine.states.CustomState;
+import engine.options.OptionsState;
 import flixel.addons.display.FlxBackdrop;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
 import flixel.text.FlxTextBorderStyle;
-import substates.GameplayChangersSubstate;
+import engine.substates.GameplayChangersSubstate;
 
 // ALSO PLAY VS REPHRASE -pootis
 
