@@ -1,11 +1,11 @@
 import openfl.Lib;
-import states.PlayState;
-import states.CustomState;
+import engine.states.PlayState;
+import engine.states.CustomState;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
-import backend.MusicBeatState;
-import backend.Discord;
-import Main;
+import engine.backend.MusicBeatState;
+import engine.backend.Discord;
+import engine.Main;
 
 var theEnd:FlxSprite;
 var subtitleText:FlxText;
