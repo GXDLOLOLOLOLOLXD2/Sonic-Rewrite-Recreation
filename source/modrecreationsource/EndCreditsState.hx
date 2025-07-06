@@ -3,10 +3,10 @@ import flixel.text.FlxText;
 import flixel.text.FlxTextFormat;
 import flixel.text.FlxTextFormatMarkerPair;
 import flixel.addons.transition.FlxTransitionableState;
-import states.CustomState;
-import backend.Discord;
-import backend.MusicBeatState;
-import states.PlayState;
+import modrecriationsource.states.CustomState;
+import engine.backend.Discord;
+import engine.backend.MusicBeatState;
+import engine.states.PlayState;
 
 var creditsString:String = "
 
