@@ -1,6 +1,6 @@
 import flixel.addons.transition.FlxTransitionableState;
-import states.FlashingState;
-import backend.Discord;
+import engine.states.FlashingState;
+import engine.backend.Discord;
 
 var bg:FlxSprite;
 var warning:FlxSprite;
