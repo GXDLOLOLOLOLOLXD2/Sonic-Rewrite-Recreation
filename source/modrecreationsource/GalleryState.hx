@@ -3,7 +3,7 @@ import engine.backend.Discord;
 import flixel.sound.FlxSound;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
-import modrecriationsource.objects.MaigoSpeaker;
+//import modrecriationsource.MaigoSpeaker;
 import engine.Main;
 
 var underlay:FlxSprite;
