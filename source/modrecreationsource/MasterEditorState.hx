@@ -1,12 +1,12 @@
 import flixel.addons.transition.FlxTransitionableState;
-import backend.Discord;
-import backend.MusicBeatState;
+import engine.backend.Discord;
+import engine.backend.MusicBeatState;
 import flixel.text.FlxText;
-import states.LoadingState;
-import objects.Character;
-import states.editors.ChartingState;
-import states.editors.CharacterEditorState;
-import states.editors.NoteSplashDebugState;
+import engine.states.LoadingState;
+import engine.objects.Character;
+import engine.states.editors.ChartingState;
+import engine.states.editors.CharacterEditorState;
+import engine.states.editors.NoteSplashDebugState;
 import openfl.Lib;
 
 var debug:FlxSprite;
