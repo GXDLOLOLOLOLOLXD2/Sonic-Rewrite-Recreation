@@ -1,13 +1,13 @@
-import backend.ClientPrefs;
-import backend.Discord;
-import backend.CoolUtil;
-import backend.MusicBeatState;
-import states.PlayState;
-import states.FlashingState;
+import engine.backend.ClientPrefs;
+import engine.backend.Discord;
+import engine.backend.CoolUtil;
+import engine.backend.MusicBeatState;
+import engine.states.PlayState;
+import engine.states.FlashingState;
 import openfl.Lib;
 import flixel.addons.transition.FlxTransitionableState;
-import backend.Controls;
-import hxvlc.flixel.FlxVideoSprite;
+import engine.backend.Controls;
+import hxvlc.flixel.FlxVideoSprite; // desktop
 
 // a lot of these variables may not be needed tbh
 var curPhase:Int = 0; // 0 - sega | 1 - video | 2 - sonic
