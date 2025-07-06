@@ -1,4 +1,4 @@
-import engine.states.CustomState;
+import modrecriationsource.CustomState;
 import engine.states.PlayState;
 import openfl.Lib;
 import engine.backend.ClientPrefs;
@@ -13,7 +13,7 @@ import engine.options.GameplaySettingsSubState;
 import engine.options.GraphicsSettingsSubState;
 import engine.options.NoteOffsetState;
 import engine.options.NotesSubState;
-import engine.options.RewriteSettingsSubState;
+//import engine.options.RewriteSettingsSubState;
 
 var bg:FlxSprite;
 var menuTitle:FlxSprite;
