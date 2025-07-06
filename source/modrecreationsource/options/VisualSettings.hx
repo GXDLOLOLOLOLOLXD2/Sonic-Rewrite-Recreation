@@ -1,11 +1,11 @@
-import states.CustomState;
-import backend.MusicBeatState;
-import backend.Discord;
-import backend.Controls;
+import modrecriationsource.CustomState;
+import engine.backend.MusicBeatState;
+import engine.backend.Discord;
+import engine.backend.Controls;
 import flixel.text.FlxText;
 import flixel.addons.transition.FlxTransitionableState;
 import Reflect;
-import Main;
+import engine.Main;
 
 var bg:FlxSprite;
 var menuTitle:FlxSprite;
