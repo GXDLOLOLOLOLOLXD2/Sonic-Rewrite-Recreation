@@ -1,10 +1,10 @@
-import backend.Controls;
-import backend.Discord;
+import engine.backend.Controls;
+import engine.backend.Discord;
 import flixel.sound.FlxSound;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
-import objects.MaigoSpeaker;
-import Main;
+import modrecriationsource.objects.MaigoSpeaker;
+import engine.Main;
 
 var underlay:FlxSprite;
 var main:FlxSprite;
