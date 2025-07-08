@@ -10,6 +10,8 @@ import backend.MusicBeatState;
 import backend.Paths;
 import backend.Controls;
 
+import objects.MaigoSpeaker;
+
 class GalleryState extends MusicBeatState {
     var underlay:FlxSprite;
     var main:FlxSprite;
