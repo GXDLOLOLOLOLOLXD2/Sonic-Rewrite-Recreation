@@ -15,7 +15,7 @@ import objects.Character;
 import states.editors.ChartingState;
 import states.editors.CharacterEditorState;
 import states.editors.NoteSplashDebugState;
-//import MainMenuState;
+import states.MainMenuState;
 
 import openfl.Lib;
 
