@@ -1,8 +1,8 @@
-package engine;
+package;
 
-#if android
+/*#if android
 import android.content.Context;
-#end
+#end*/
 
 import debug.FPSCounter;
 
@@ -16,7 +16,9 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.app.Application;
-import engine.states.TitleState;
+
+import modsrc.*;
+import engine.*;
 
 #if linux
 import lime.graphics.Image;
@@ -41,7 +43,7 @@ class Main extends Sprite
 	var game = {
 		width: 1280, // WINDOW width
 		height: 720, // WINDOW height
-		initialState: TitleState, // initial game state
+		initialState: FlashingState, // initial game state
 		zoom: -1.0, // game state bounds
 		framerate: 60, // default framerate
 		skipSplash: true, // if the default flixel splash screen should be skipped
@@ -183,10 +185,10 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: " + e.error + "\nPlease report this error to the GitHub page: https://github.com/ShadowMario/FNF-PsychEngine\n\n> Crash Handler written by: sqirra-rng";
 
-		if (!FileSystem.exists("./crash/"))
-			FileSystem.createDirectory("./crash/");
+		if (!MobileUtils.existsLOL("./crash/"))
+			MobileUtils.createDirectory("./crash/");
 
-		File.saveContent(path, errMsg + "\n");
+		MobileUtils.saveContent(path, errMsg + "\n");
 
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));

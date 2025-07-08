@@ -1,7 +1,7 @@
 package substates;
 
-import objects.AttachedText;
-import objects.CheckboxThingie;
+import engine.objects.AttachedText;
+import engine.objects.CheckboxThingie;
 
 class GameplayChangersSubstate extends MusicBeatSubstate
 {

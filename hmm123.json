@@ -1,0 +1,15 @@
+{
+  "name": "Sonic-Rewrite-Recreation",
+  "version": "1.0.0",
+  "dependencies": {
+    "flixel": "4.9.1",
+    "hxcodec": "3.0.0",
+    "openfl": "9.1.0",
+    "lime": "7.1.0",
+    "hxvlc": "1.0.0",
+    "psychlua": "1.0.0"
+  },
+  "devDependencies": {
+    "haxe": "4.2.5"
+  }
+}

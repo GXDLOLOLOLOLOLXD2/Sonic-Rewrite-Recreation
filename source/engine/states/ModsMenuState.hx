@@ -15,6 +15,8 @@ import objects.AttachedSprite;
 import options.ModSettingsSubState;
 import flixel.addons.transition.FlxTransitionableState;
 
+import modsrc.TitleState;
+
 class ModsMenuState extends MusicBeatState
 {
 	var bg:FlxSprite;
