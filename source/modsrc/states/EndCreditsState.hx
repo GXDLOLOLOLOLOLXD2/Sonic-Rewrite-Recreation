@@ -14,10 +14,9 @@ import backend.DiscordClient;
 import backend.MusicBeatState;
 import states.PlayState;
 
-/*
-import MainMenuState;
-import PostCreditsState;
-*/
+
+import states.ModMainMenuState;
+import states.PostCreditsState;
 
 class EndCreditsState extends MusicBeatState {
     var creditsString:String = "
@@ -283,7 +282,7 @@ class EndCreditsState extends MusicBeatState {
 
     function goToMainMenu() {
         //#if (modState && MENUS)
-        var returnMenu:Class<MusicBeatState> = !FlxG.save.data.seenPostCredits ? PostCreditsState : MainMenuState;
+        var returnMenu:Class<MusicBeatState> = !FlxG.save.data.seenPostCredits ? PostCreditsState : ModMainMenuState;
         //#else
         //var returnMenu:Class<MusicBeatState> = MainMenuState;
         //#end

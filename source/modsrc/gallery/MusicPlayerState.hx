@@ -17,7 +17,11 @@ import objects.MaigoSpeaker;
 import Math;
 import Main;
 
+import states.GalleryState;
+
 class MusicPlayerState extends MusicBeatState {
+    public static var dataSelect:Bool = false;
+
     var loaded:Bool = false;
     var overlay:FlxSprite;
 
@@ -246,7 +250,7 @@ class MusicPlayerState extends MusicBeatState {
 
         Main.fpsVar.defaultColor = 0xFF000000;
 
-        CustomState.dataSelect = true;
+        ComputerState.dataSelect = true;
         FlxG.autoPause = false;
 
         var seenDialogue:Bool = false;
@@ -562,7 +566,7 @@ class MusicPlayerState extends MusicBeatState {
                 }
                 FlxG.autoPause = true;
                 saveSeenDialogues();
-                MusicBeatState.switchState(new modsrc.gallery.GalleryState());
+                MusicBeatState.switchState(new GalleryState());
             }
         }
     }
@@ -574,6 +578,4 @@ class MusicPlayerState extends MusicBeatState {
         }
         FlxG.save.flush();
     }
-
-    // ... (demais funções do seu script) ...
 }

@@ -12,6 +12,9 @@ import backend.Controls;
 
 import objects.MaigoSpeaker;
 
+import states.ModMainMenuState;
+import states.ModOptionsState;
+
 class GalleryState extends MusicBeatState {
     var underlay:FlxSprite;
     var main:FlxSprite;
@@ -444,10 +447,10 @@ class GalleryState extends MusicBeatState {
 
             switch (path) {
                 case "states/MainMenuState":
-                    MusicBeatState.switchState(new MainMenuState());
+                    MusicBeatState.switchState(new ModMainMenuState());
                     break;
                 case "states/OptionsState":
-                    MusicBeatState.switchState(new OptionsState());
+                    MusicBeatState.switchState(new ModOptionsState());
                     break;
                 default:
                     trace("State not found: " + path);

@@ -12,6 +12,9 @@ import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
 import Reflect;
 
+import states.ModOptionsState;
+import states.ModMainMenuState;
+
 class RewriteSettings extends MusicBeatState {
     var bg:FlxSprite;
     var menuTitle:FlxSprite;
@@ -194,7 +197,7 @@ class RewriteSettings extends MusicBeatState {
             FlxTween.tween(blueFade, {alpha: 1}, 0.5);
             FlxG.camera.fade(0xFF000000, 0.7);
             new FlxTimer().start(0.75, function(tmr) {
-                MusicBeatState.switchState(new options.OptionsState());
+                MusicBeatState.switchState(new ModOptionsState());
             });
         }
 

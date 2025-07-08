@@ -12,7 +12,7 @@ import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.util.FlxColor;
-import states.MainMenuState;
+import states.ModMainMenuState;
 
 class PostCreditsState extends MusicBeatState {
     var theEnd:FlxSprite;
@@ -165,7 +165,7 @@ class PostCreditsState extends MusicBeatState {
                 new FlxTimer().start(0.95, (_) -> {
                     FlxG.sound.music.stop();
                     FlxG.sound.music = null;
-                    MusicBeatState.switchState(new MainMenuState());
+                    MusicBeatState.switchState(new ModMainMenuState());
                 });
             });
         });
