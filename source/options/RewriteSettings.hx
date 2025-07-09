@@ -11,11 +11,11 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
 import Reflect;
-import Main;
 
 import states.ModOptionsState;
+import states.ModMainMenuState;
 
-class ModVisualSettings extends MusicBeatState {
+class RewriteSettings extends MusicBeatState {
     var bg:FlxSprite;
     var menuTitle:FlxSprite;
     var leaving:Bool = false;
@@ -23,11 +23,11 @@ class ModVisualSettings extends MusicBeatState {
     var curSelected:Int = 0;
     var curValue:Dynamic;
     var options:Array<Dynamic> = [
-        ["Note Splash Opacity", "splashAlpha", "100% - Zero Transparency.\n0% - Non-visible.", "percent", [0, 1, 0.1, 1.6]],
-        ["Flashing Lights", "flashing", "Uncheck this if you're sensitive to flashing lights!\nNote: This option does not disable EVERY flashing light in the mod, proceed with caution.", "bool"],
-        ["FPS Counter", "showFPS", "If unchecked, hides the FPS counter.", "bool"],
-        ["Discord RPC", "discordRPC", "Uncheck this to prevent accidental leaks, it will hide the application from your \"Playing\" box on Discord.", "bool"]
+        ["Window Moving", "windowFuckery", "If checked, the game will be allowed to move\nyour window during certain segments.\n(NOTE: This does not change Trinity's Fullscreen mechanic!!!)", "bool"],
+        ["Taskbar Hiding", "windowClosing", "If checked, the game will be allowed to hide your taskbar.\nUncheck if this is lagging your game.\n(Or if you just don't want that.)", "bool"],
+        ["Remixed Legacy Songs", "remixedLegacySongs", "If checked, the game uses the Remixed versions of the Legacy songs.\nRemixed versions are updated versions of the Legacy songs with some small changes.", "bool"]
     ];
+
     var descriptionText:FlxText;
     var hitMinMax:Bool = false;
     var optionsAssetsArray:Array<Array<Dynamic>> = [];
@@ -36,7 +36,7 @@ class ModVisualSettings extends MusicBeatState {
     override public function create():Void {
         super.create();
 
-        DiscordClient.changePresence("Visual Settings Menu", null);
+        backend.DiscordClient.changePresence("Gameplay Settings Menu", null);
 
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
@@ -144,7 +144,7 @@ class ModVisualSettings extends MusicBeatState {
 
         descriptionText.text = options[curSelected][2];
         switch (options[curSelected][1]) {
-            case "flashing": descriptionText.y = 600;
+            case "remixedLegacySongs": descriptionText.y = 565;
             default: descriptionText.y = 640;
         }
         curValue = Reflect.getProperty(ClientPrefs.data, options[curSelected][1]);
@@ -184,24 +184,11 @@ class ModVisualSettings extends MusicBeatState {
                 if (!silent) FlxG.sound.play(Paths.sound("scrollMenu"), 0.8);
                 optionsAssetsArray[curSelected][1].text = Reflect.getProperty(ClientPrefs.data, options[curSelected][1]) + " " + options[curSelected][4][4];
         }
-
-        switch (options[curSelected][1]) {
-            case "showFPS":
-                Main.fpsVar.visible = ClientPrefs.data.showFPS;
-            case "discordRPC":
-                if (ClientPrefs.data.discordRPC) {
-                    DiscordClient.prepare();
-                    DiscordClient.changePresence("Visual Settings Menu", null);
-                } else {
-                    DiscordClient.shutdown();
-                }
-        }
     }
 
     override public function update(elapsed:Float):Void {
         super.update(elapsed);
 
-        if (DiscordClient.getPresence() == "In the Menus") DiscordClient.changePresence("Visual Settings Menu", null);
         if (leaving) return;
 
         if (controls.BACK) {

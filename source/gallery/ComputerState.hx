@@ -3,7 +3,7 @@ package modsrc.gallery;
 // WARNING: This shit is genuinely held together with duct tape and prayers. Im not even kidding this code is so fucking ass.
 
 import backend.Controls;
-import backend.DiscordClient;
+import backend.Discord;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.text.FlxText;
 import flixel.FlxG;
@@ -216,7 +216,7 @@ class ComputerState extends MusicBeatState {
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
 
-        DiscordClient.changePresence("Gallery - Desktop", null);
+        backend.DiscordClient.changePresence("Gallery - Desktop", null);
 
         FlxG.camera.bgColor = 00000000;
         FlxG.sound.music.volume = 1;
@@ -226,7 +226,7 @@ class ComputerState extends MusicBeatState {
 
         desktop = new FlxSprite().loadGraphic(Paths.image("menus/gallery/desktop/michaelsoftBinbows"));
 
-        for (i in [underlay, desktop]) game.add(i);
+        for (i in [underlay, desktop]) add(i);
 
         for (i in apps)
         {
@@ -234,13 +234,13 @@ class ComputerState extends MusicBeatState {
             icon.scale.set(2.5, 2.5);
             icon.updateHitbox();
             icon.alpha = 0.001;
-            game.add(icon);
+            add(icon);
 
             var text = new FlxText(i[3] - 345, i[4] + 105, FlxG.width, i[1]);
             text.setFormat(Paths.font("windows-xp-tahoma.ttf"), 30, 0xFFFFFFFF, "center", FlxTextBorderStyle.SHADOW, 0xFF272B4F, false);
             text.borderSize = 1.5;
             text.alpha = 0.001;
-            game.add(text);
+            add(text);
 
             i.push([icon, text]);
         }
@@ -340,7 +340,7 @@ class ComputerState extends MusicBeatState {
 
         filesGroup = createGroup();
         filesGroup.camera = windowCamera;
-        game.add(filesGroup);
+        add(filesGroup);
 
         for (i in [customCursor, windowSlider, windowUpButton, windowDownButton, maigo, descriptionText]) i.camera = cursorCamera;
 
@@ -351,7 +351,7 @@ class ComputerState extends MusicBeatState {
         windowUpButton.alpha = windowDownButton.alpha = windowBioText.alpha = 0.001;
 
         for (i in [window, windowImage, windowVideo, windowUpButton, windowDownButton, windowBioText, windowPauseButton, windowPreviousButton, windowNextButton, 
-        windowTimeBar, windowPlayhead, windowScrollBar, windowSlider, windowTitle, closeHitbox, overlay, maigo, descriptionText, customCursor]) game.add(i);
+        windowTimeBar, windowPlayhead, windowScrollBar, windowSlider, windowTitle, closeHitbox, overlay, maigo, descriptionText, customCursor]) add(i);
 
         for (i in [overlay, desktop]) {
             i.scale.set(i == desktop ? 3.6 : 3.5, 3.5);
@@ -1217,7 +1217,7 @@ class ComputerState extends MusicBeatState {
 
             for (i in [icon, text]) {
                 i.camera = windowCamera;
-                game.add(i);
+                add(i);
             }
 
             filesGroup.add(hitbox);

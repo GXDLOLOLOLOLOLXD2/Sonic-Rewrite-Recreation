@@ -38,7 +38,7 @@ class ModMasterEditorState extends MusicBeatState {
     override function create() {
         super.create();
 
-        DiscordClient.changePresence("Master Editor Menu", null);
+        backend.DiscordClient.changePresence("Master Editor Menu", null);
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
         resizeWindow(820, 720);

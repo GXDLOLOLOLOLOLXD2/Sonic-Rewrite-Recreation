@@ -5,7 +5,7 @@ import lime.app.Application;
 import hxdiscord_rpc.Discord;
 import hxdiscord_rpc.Types;
 
-class DiscordClient
+class DiscordClient // old are "class DiscordClient"
 {
 	public static var isInitialized:Bool = false;
 	private static final _defaultID:String = "863222024192262205";
@@ -14,26 +14,33 @@ class DiscordClient
 
 	public static function check()
 	{
+		#if desktop
 		if(ClientPrefs.data.discordRPC) initialize();
 		else if(isInitialized) shutdown();
+		#end
 	}
 	
 	public static function prepare()
 	{
+		#if desktop
 		if (!isInitialized && ClientPrefs.data.discordRPC)
 			initialize();
 
 		Application.current.window.onClose.add(function() {
 			if(isInitialized) shutdown();
 		});
+		#end
 	}
 
 	public dynamic static function shutdown() {
+		#if desktop
 		Discord.Shutdown();
 		isInitialized = false;
+		#end
 	}
 	
 	private static function onReady(request:cpp.RawConstPointer<DiscordUser>):Void {
+		#if desktop
 		var requestPtr:cpp.Star<DiscordUser> = cpp.ConstPointer.fromRaw(request).ptr;
 
 		if (Std.parseInt(cast(requestPtr.discriminator, String)) != 0) //New Discord IDs/Discriminator system
@@ -42,18 +49,24 @@ class DiscordClient
 			trace('(Discord) Connected to User (${cast(requestPtr.username, String)})');
 
 		changePresence();
+		#end
 	}
 
 	private static function onError(errorCode:Int, message:cpp.ConstCharStar):Void {
+		#if desktop
 		trace('Discord: Error ($errorCode: ${cast(message, String)})');
+		#end
 	}
 
 	private static function onDisconnected(errorCode:Int, message:cpp.ConstCharStar):Void {
+		#if desktop
 		trace('Discord: Disconnected ($errorCode: ${cast(message, String)})');
+		#end
 	}
 
 	public static function initialize()
 	{
+		#if desktop
 		var discordHandlers:DiscordEventHandlers = #if (hxdiscord_rpc > "1.2.4") new DiscordEventHandlers(); #else DiscordEventHandlers.create(); #end
 		discordHandlers.ready = cpp.Function.fromStaticFunction(onReady);
 		discordHandlers.disconnected = cpp.Function.fromStaticFunction(onDisconnected);
@@ -77,10 +90,12 @@ class DiscordClient
 			}
 		});
 		isInitialized = true;
+		#end
 	}
 
 	public static function changePresence(?details:String = 'In the Menus', ?state:Null<String>, ?smallImageKey : String, ?hasStartTimestamp : Bool, ?endTimestamp: Float)
 	{
+		#if desktop
 		var startTimestamp:Float = 0;
 		if (hasStartTimestamp) startTimestamp = Date.now().getTime();
 		if (endTimestamp > 0) endTimestamp = startTimestamp + endTimestamp;
@@ -96,16 +111,24 @@ class DiscordClient
 		updatePresence();
 
 		//trace('Discord RPC Updated. Arguments: $details, $state, $smallImageKey, $hasStartTimestamp, $endTimestamp');
+		#end
 	}
 
-	public static function updatePresence()
+	public static function updatePresence() {
+		#if desktop
 		Discord.UpdatePresence(cpp.RawConstPointer.addressOf(presence));
+		#end
+	}
 	
-	public static function resetClientID()
+	public static function resetClientID() {
+		#if desktop
 		clientID = _defaultID;
+		#end
+	}
 
 	private static function set_clientID(newID:String)
 	{
+		#if desktop
 		var change:Bool = (clientID != newID);
 		clientID = newID;
 
@@ -116,9 +139,10 @@ class DiscordClient
 			updatePresence();
 		}
 		return newID;
+		#end
 	}
 
-	#if (MODS_ALLOWED && DISCORD_ALLOWED)
+	#if DISCORD_ALLOWED // (MODS_ALLOWED && DISCORD_ALLOWED)
 	public static function loadModRPC()
 	{
 		var pack:Dynamic = Mods.getPack();
@@ -132,6 +156,7 @@ class DiscordClient
 
 	#if LUA_ALLOWED
 	public static function addLuaCallbacks(lua:State) {
+		#if desktop
 		Lua_helper.add_callback(lua, "changeDiscordPresence", function(details:String, state:Null<String>, ?smallImageKey:String, ?hasStartTimestamp:Bool, ?endTimestamp:Float) {
 			changePresence(details, state, smallImageKey, hasStartTimestamp, endTimestamp);
 		});
@@ -140,6 +165,7 @@ class DiscordClient
 			if(newID == null) newID = _defaultID;
 			clientID = newID;
 		});
+		#end
 	}
 	#end
 }

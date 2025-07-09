@@ -39,7 +39,7 @@ class PostCreditsState extends MusicBeatState {
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
 
-        DiscordClient.changePresence("Post Credits", null);
+        backend.DiscordClient.changePresence("Post Credits", null);
 
         if (FlxG.sound.music != null) FlxG.sound.music.stop();
 

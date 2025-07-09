@@ -59,7 +59,7 @@ class FreeplayState extends MusicBeatState
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
+		backend.DiscordClient.changePresence("In the Menus", null);
 		#end
 
 		for (i in 0...WeekData.weeksList.length) {
@@ -411,7 +411,7 @@ class FreeplayState extends MusicBeatState
 					
 			destroyFreeplayVocals();
 			#if (MODS_ALLOWED && DISCORD_ALLOWED)
-			DiscordClient.loadModRPC();
+			backend.DiscordClient.loadModRPC();
 			#end
 		}
 		else if((controls.RESET || touchPad.buttonY.justPressed) && !player.playingMusic)

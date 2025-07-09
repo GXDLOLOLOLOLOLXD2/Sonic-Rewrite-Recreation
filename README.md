@@ -1,12 +1,16 @@
 # Sonic Rewrite Recreation - Mobile
 
-Nothing to see here...
+Use this command in your terminal:
+```haxelib install hmm```
+and:
+```haxelib run hmm install```
+and done!
 
 ## Friday Night Funkin' - Psych Engine Mobile
 
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
 
-[h2]Customization:[/h2]
+[h2]Customization:
 
 if you wish to disable things like *Lua Scripts* or *Video Cutscenes*, you can read over to `Project.xml`
 
@@ -16,7 +20,7 @@ to start you off, disabling Videos should be simple, simply Delete the line `"VI
 
 same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, this and other customization options are all available within the `Project.xml` file
 
-[h2]Mobile Credits:[/h2]
+[h2]Mobile Credits:
 
 * Lily - Head Porter and linc_luajit-rewriten.
 * Karim - Second Porter.
@@ -54,13 +58,13 @@ _____________________________________
 
 ![lol](https://user-images.githubusercontent.com/44785097/127706669-71cd5cdb-5c2a-4ecc-871b-98a276ae8070.gif)
 
-[h2]Mod Support[/h2]
+[h2]Mod Support
 
 * Probably one of the main points of this engine, you can code in .lua files outside of the source code, making your own weeks without even messing with the source!
 * Comes with a Mod Organizing/Disabling Menu.
 
 
-[h2]Atleast one change to every week:[/h2]
+[h2]Atleast one change to every week:
 
 ### Week 1:
 

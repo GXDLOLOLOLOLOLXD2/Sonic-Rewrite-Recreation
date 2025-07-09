@@ -44,7 +44,7 @@ class ModTitleState extends MusicBeatState {
         Paths.clearStoredMemory();
         FlxG.save.bind('funkin', CoolUtil.getSavePath());
         ClientPrefs.loadPrefs();
-        DiscordClient.changePresence("Title Screen", null);
+        backend.DiscordClient.changePresence("Title Screen", null);
 
         FlxG.scaleMode = PlayState.getStageSizeScaleMode();
         resizeWindow(820, 720);
@@ -92,7 +92,7 @@ class ModTitleState extends MusicBeatState {
         introVideo = new FlxVideoSprite();
         introVideo.load(Paths.video('intro'));
         introVideo.alpha = 0.001;
-        game.add(introVideo);
+        add(introVideo);
 
         sega = new FlxSprite();
         sega.frames = Paths.getSparrowAtlas("menus/title/sega");
@@ -103,7 +103,7 @@ class ModTitleState extends MusicBeatState {
         for (i in [introAnim, ring, sonic, arm, logo, pressSpace, sparkles, sega])
         {
             i.scale.set(i == sparkles ? 1.5 : 3.5, i == sparkles ? 1.5 : 3.5);
-            game.add(i);
+            add(i);
         }
 
         introAnim.animation.finishCallback = function (_) setupSonic();

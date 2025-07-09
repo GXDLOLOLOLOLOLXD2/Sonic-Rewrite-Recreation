@@ -38,7 +38,7 @@ class ModOptionsState extends MusicBeatState {
 	var blueFade:FlxSprite;
 
 	override function create() {
-		DiscordClient.changePresence("Settings Menu", null);
+		backend.DiscordClient.changePresence("Settings Menu", null);
 		FlxG.scaleMode = PlayState.getStageSizeScaleMode();
 		resizeWindow(820, 720);
 

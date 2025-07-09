@@ -16,7 +16,7 @@ import backend.Highscore;
 import backend.Controls;
 import backend.Song;
 import backend.MusicBeatState;
-import backend.Discord;
+import backend.DiscordClient;
 import substates.GameplayChangersSubstate;
 import states.LoadingState;
 import states.PlayState;
@@ -65,7 +65,7 @@ class ModMainStateMenu extends MusicBeatState {
 	override public function create():Void {
 		Paths.clearStoredMemory();
 
-    	DiscordClient.changePresence("Main Menu", null);
+    	backend.DiscordClient.changePresence("Main Menu", null);
     	Highscore.load();
 
     	FlxG.scaleMode = PlayState.getStageSizeScaleMode();
@@ -132,7 +132,7 @@ class ModMainStateMenu extends MusicBeatState {
     	for (i in [bg, clouds, special, menuTitle]) {
     	    if (i != bg) i.scale.set(i == menuTitle ? 2.75 : 4, i == menuTitle ? 2.75 : 4);
     	    i.screenCenter();
-    	    game.add(i);
+    	    add(i);
     	}
 
     	menuTitle.y -= 290;
@@ -145,7 +145,7 @@ class ModMainStateMenu extends MusicBeatState {
     	    menuText.screenCenter();
     	    menuText.y += i * 70 - 80;
     	    menuItems[i][2] = menuText;
-    	    game.add(menuText);
+    	    add(menuText);
     	}
 
     	sonicText = new FlxText(0, 550, FlxG.width, "PLAY SONIC'S GAME TO ACCESS THIS OPTION");
@@ -154,12 +154,12 @@ class ModMainStateMenu extends MusicBeatState {
     	sonicText.shadowOffset.y += 3;
     	sonicText.screenCenter(0x01);
     	sonicText.visible = false;
-    	game.add(sonicText);
+    	add(sonicText);
 
     	selector = new FlxSprite().loadGraphic(Paths.image("menus/main/selector"));
     	selector.scale.set(4, 4);
     	selector.screenCenter(0x01);
-    	game.add(selector);
+    	add(selector);
 
     	changeSelection(0, true);
     	Paths.sound("confirmMenu");
@@ -173,7 +173,7 @@ class ModMainStateMenu extends MusicBeatState {
     	    file.x = 160 + i * 407;
     	    file.y += 50;
     	    files[i].push(file);
-    	    game.add(file);
+    	    add(file);
 
     	    var icon = new FlxSprite().loadGraphic(Paths.image("menus/main/icons/Thriller Gen"));
     	    icon.scale.set(3.51, 3.51);
@@ -181,7 +181,7 @@ class ModMainStateMenu extends MusicBeatState {
     	    icon.x = file.x - 2;
     	    icon.y = file.y - 112;
     	    files[i].push(icon);
-    	    game.add(icon);
+    	    add(icon);
 
     	    var title = new FlxSprite().loadGraphic(Paths.image("menus/main/titles/Thriller Gen"));
     	    title.scale.set(3.5, 3.5);
@@ -189,7 +189,7 @@ class ModMainStateMenu extends MusicBeatState {
     	    title.x = file.x + 10;
     	    title.y = file.y + 100;
     	    files[i].push(title);
-    	    game.add(title);
+    	    add(title);
 
     	    var lock = new FlxSprite().loadGraphic(Paths.image("menus/main/x")); // honestly just for trinity but might as well put it here
     	    lock.scale.set(3.5, 3.5);
@@ -198,7 +198,7 @@ class ModMainStateMenu extends MusicBeatState {
     	    lock.x = file.x + 25;
     	    lock.y = file.y + 240;
     	    files[i].push(lock);
-    	    game.add(lock);
+    	    add(lock);
 
     	    var staticSprite = new FlxSprite();
     	    staticSprite.frames = Paths.getSparrowAtlas("menus/main/static");
@@ -210,7 +210,7 @@ class ModMainStateMenu extends MusicBeatState {
     	    staticSprite.y = icon.y;
     	    staticSprite.visible = false;
     	    files[i].push(staticSprite);
-    	    game.add(staticSprite);
+    	    add(staticSprite);
 
     	    var song:Array = [];
     	    files[i].push(song);
@@ -219,24 +219,24 @@ class ModMainStateMenu extends MusicBeatState {
     	bf = new FlxSprite(0, 560).loadGraphic(Paths.image("menus/main/boyfriend"));
     	bf.scale.set(4, 4);
     	bf.alpha = 0.001;
-    	game.add(bf);
+    	add(bf);
 
     	dataSelector = new FlxSprite(0, 320).loadGraphic(Paths.image("menus/main/select"));
     	dataSelector.scale.set(3.5, 3.5);
     	dataSelector.alpha = 0.001;
-    	game.add(dataSelector);
+    	add(dataSelector);
 
     	arrows = new FlxSprite(250, 205).loadGraphic(Paths.image("menus/main/arrows"));
     	arrows.scale.set(3.5, 3.5);
     	arrows.alpha = 0.001;
-    	if (FlxG.save.data.beatenTrinity || debug) game.add(arrows);
+    	if (FlxG.save.data.beatenTrinity || debug) add(arrows);
 
     	blueFade = new FlxSprite(0, 0).makeGraphic(100, 100, 0xFF0000FF);
     	blueFade.scale.set(100, 100);
     	blueFade.screenCenter();
     	blueFade.blend = 9;
     	blueFade.alpha = 0.001;
-    	game.add(blueFade);
+    	add(blueFade);
 
     	new FlxTimer().start(0.5, function(tmr) {
     	    arrows.visible = !arrows.visible;

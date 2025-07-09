@@ -11,10 +11,11 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
 import Reflect;
+import Main;
 
 import states.ModOptionsState;
 
-class ModGraphicSettings extends MusicBeatState {
+class ModVisualSettings extends MusicBeatState {
     var bg:FlxSprite;
     var menuTitle:FlxSprite;
     var leaving:Bool = false;
@@ -22,13 +23,11 @@ class ModGraphicSettings extends MusicBeatState {
     var curSelected:Int = 0;
     var curValue:Dynamic;
     var options:Array<Dynamic> = [
-        ["Low Quality", "lowQuality", "If checked, disables some events such as noteskin changes,\nimproves performance.", "bool"],
-        ["Anti-aliasing", "antialiasing", "If unchecked, disables anti-aliasing.\nWhile not used for most of the mod, disabling it can improve performance.", "bool"],
-        ["Shaders", "shaders", "If unchecked, disables shaders.\nThey're used for some visual effects, disable this if game is crashing and you have an AMD GPU.", "bool"],
-        ["GPU Caching", "cacheOnGPU", "If checked, allows the GPU to be used for caching textures, decreasing RAM usage.\nDon't turn this on if you have a low-end GPU.", "bool"],
-        ["Framerate", "framerate", "Changes the game's framerate. Can improve performance at lower rates.", "int", [30, 240, 1, 50, "FPS"]]
+        ["Note Splash Opacity", "splashAlpha", "100% - Zero Transparency.\n0% - Non-visible.", "percent", [0, 1, 0.1, 1.6]],
+        ["Flashing Lights", "flashing", "Uncheck this if you're sensitive to flashing lights!\nNote: This option does not disable EVERY flashing light in the mod, proceed with caution.", "bool"],
+        ["FPS Counter", "showFPS", "If unchecked, hides the FPS counter.", "bool"],
+        ["Discord RPC", "discordRPC", "Uncheck this to prevent accidental leaks, it will hide the application from your \"Playing\" box on Discord.", "bool"]
     ];
-
     var descriptionText:FlxText;
     var hitMinMax:Bool = false;
     var optionsAssetsArray:Array<Array<Dynamic>> = [];
@@ -37,7 +36,7 @@ class ModGraphicSettings extends MusicBeatState {
     override public function create():Void {
         super.create();
 
-        DiscordClient.changePresence("Graphic Settings Menu", null);
+        backend.DiscordClient.changePresence("Visual Settings Menu", null);
 
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
@@ -145,7 +144,7 @@ class ModGraphicSettings extends MusicBeatState {
 
         descriptionText.text = options[curSelected][2];
         switch (options[curSelected][1]) {
-            case "antialiasing", "shaders": descriptionText.y = 600;
+            case "flashing": descriptionText.y = 600;
             default: descriptionText.y = 640;
         }
         curValue = Reflect.getProperty(ClientPrefs.data, options[curSelected][1]);
@@ -187,13 +186,14 @@ class ModGraphicSettings extends MusicBeatState {
         }
 
         switch (options[curSelected][1]) {
-            case "framerate":
-                if(ClientPrefs.data.framerate > FlxG.drawFramerate) {
-                    FlxG.updateFramerate = ClientPrefs.data.framerate;
-                    FlxG.drawFramerate = ClientPrefs.data.framerate;
+            case "showFPS":
+                Main.fpsVar.visible = ClientPrefs.data.showFPS;
+            case "discordRPC":
+                if (ClientPrefs.data.discordRPC) {
+                    backend.DiscordClient.prepare();
+                    backend.DiscordClient.changePresence("Visual Settings Menu", null);
                 } else {
-                    FlxG.drawFramerate = ClientPrefs.data.framerate;
-                    FlxG.updateFramerate = ClientPrefs.data.framerate;
+                    backend.DiscordClient.shutdown();
                 }
         }
     }
@@ -201,6 +201,7 @@ class ModGraphicSettings extends MusicBeatState {
     override public function update(elapsed:Float):Void {
         super.update(elapsed);
 
+        if (backend.DiscordClient.getPresence() == "In the Menus") backend.DiscordClient.changePresence("Visual Settings Menu", null);
         if (leaving) return;
 
         if (controls.BACK) {

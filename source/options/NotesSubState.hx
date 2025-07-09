@@ -53,7 +53,7 @@ class NotesSubState extends MusicBeatSubstate
 		super();
 		
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Note Colors Menu", null);
+		backend.DiscordClient.changePresence("Note Colors Menu", null);
 		#end
 		
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));

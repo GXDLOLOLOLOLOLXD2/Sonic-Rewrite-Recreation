@@ -60,7 +60,7 @@ class CreditsState extends MusicBeatState {
         FlxTransitionableState.skipNextTransOut = true;
         FlxG.mouse.visible = false;
 
-        DiscordClient.changePresence("Credits", null);
+        backend.DiscordClient.changePresence("Credits", null);
         FlxG.camera.flash(FlxColor.BLACK, 0.6);
 
         bg = new FlxBackdrop(Paths.image("menus/credits/bg"));

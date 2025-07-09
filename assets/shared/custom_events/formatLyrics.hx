@@ -23,7 +23,7 @@ function onCreatePost()
         i.size = 48;
         i.scrollFactor.set(0, 0);
         i.alignment = "center";
-        game.add(i);
+        add(i);
     }
 
     lyricsFormat = new FlxTextFormatMarkerPair(new FlxTextFormat(0xFFFF0000), "$");

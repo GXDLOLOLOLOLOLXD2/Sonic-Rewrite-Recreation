@@ -45,7 +45,7 @@ class OptionsState extends MusicBeatState
 
 	override function create() {
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Options Menu", null);
+		backend.DiscordClient.changePresence("Options Menu", null);
 		#end
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
@@ -107,7 +107,7 @@ class OptionsState extends MusicBeatState
 	override function closeSubState() {
 		super.closeSubState();
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Options Menu", null);
+		backend.DiscordClient.changePresence("Options Menu", null);
 		#end
 		ClientPrefs.saveSettings();
 		ClientPrefs.loadPrefs();

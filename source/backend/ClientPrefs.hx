@@ -250,7 +250,7 @@ class ClientPrefs {
 			FlxG.sound.muted = FlxG.save.data.mute;
 
 		#if DISCORD_ALLOWED
-		DiscordClient.check();
+		backend.DiscordClient.check();
 		#end
 
 		// controls on a separate save file

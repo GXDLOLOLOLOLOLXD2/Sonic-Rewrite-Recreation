@@ -98,7 +98,7 @@ class MusicPlayerState extends MusicBeatState {
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
 
-        DiscordClient.changePresence("Gallery - Music Player", null);
+        backend.DiscordClient.changePresence("Gallery - Music Player", null);
 
         textCam = new FlxCamera(290, 10, 273, 126);
         textCam.bgColor = 0xFF393C10;

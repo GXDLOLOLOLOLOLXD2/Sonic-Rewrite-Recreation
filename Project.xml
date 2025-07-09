@@ -29,9 +29,9 @@
 	<!-- <define name="PSYCH_WATERMARKS"/> DELETE THIS TO REMOVE WATERMARKS/DEV NAMES ON TITLE SCREEN -->
 	<define name="VIDEOS_ALLOWED" if="desktop || mobile" unless="32bits || hl || NOVIDEO || rpi"/> <!-- i'll keep this cuz it makes vscode think i don't use videos -->
 
-	<section if="officialBuild">
+	<!--<section if="officialBuild">
 		<define name="TITLE_SCREEN_EASTER_EGG"/>
-	</section>
+	</section>-->
 
 	<!-- <haxedef name="TOUCH_CONTROLS" if="mobile"/> -->
 	<!-- <haxedef name="VOID_eRror" /> --> <!-- glitched mode -->
@@ -47,8 +47,18 @@
 	<haxedef name="MOBILE_CONTROLS" if="mobile" /> <!-- debug, extras -->
 	<!-- <haxedef name="eRror_Null_Hello" /> --> <!-- The bRoken ScRipt -->
 
-	<haxefec name="modState" />
-	<!-- SONIC_REWRITE - EXTRAS_SONGS - MENUS - RECREATION - MOBILE_CONTROLS - modState -->
+	<haxedef name="PLAY_QUESTION" />
+
+	<haxedef name="modState" />
+	<!--
+		SONIC_REWRITE - Assets/Source of the mod.
+			EXTRAS_SONGS - Extra songs(legacy songs + remixed).
+				MENUS - Psych Engine Menus.
+					RECREATION - Recreated Parts.
+						MOBILE_CONTROLS - Mobile Controls.
+							modState - Mod Menus.
+								PLAY_QUESTION - A menu of 2 options of play the engine of the mod.
+									-->
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
@@ -114,10 +124,17 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="tjson" />
 
+	<haxelib name="lime" version="8.0.2" />
+	<haxelib name="openfl" version="9.3.2" />
+	<haxelib name="hscript" if="HSCRIPT_ALLOWED" />
+
 	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
-	<haxelib name="SScript" if="HSCRIPT_ALLOWED"/>
-	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
+	<!-- <haxelib name="SScript" if="HSCRIPT_ALLOWED"/> -->
+
+	<haxelib name="hxvlc" if="desktop || mobile" />
+	<!-- <ndll name="android" path="project/ndll/Android" /> -->
+
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
 	<!-- Mobile Specific-->
@@ -129,7 +146,7 @@
 
 	<!-- Enables a terminal log prompt on debug builds -->
 	<haxelib name="hxcpp-debug-server" if="debug"/>
-	<haxedef name="HXC_LIBVLC_LOGGING" if="VIDEOS_ALLOWED debug" />
+	<!-- <haxedef name="HXC_LIBVLC_LOGGING" if="VIDEOS_ALLOWED debug" /> --> <!-- This are for Hxcodec but I'm using Hxvlc -->
 	
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -173,9 +190,6 @@
 		<haxedef name="HXCPP_STACK_TRACE" />
 		<haxedef name="HXCPP_CATCH_SEGV" />
 	</section>
-
-	<haxelib name="hxvlc" />
-	<ndll path="project/ndll/Android" />
 
 	<!-- Category Type for Apple Systems -->
 	<config:ios category_type="public.app-category.music-games" />

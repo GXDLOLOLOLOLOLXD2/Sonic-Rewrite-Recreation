@@ -58,7 +58,7 @@ function onCreate()
         i.bitmap.rate = game.playbackRate;
         i.alpha = 0.001;
         i.cameras = [i == majinVideo ? game.camOther : game.camVideo];
-        game.add(i);
+        add(i);
     }
 
     //PlayState.checkpointTime = 135000; // legacy

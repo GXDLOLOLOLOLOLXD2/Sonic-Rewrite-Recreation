@@ -69,7 +69,7 @@ class ControlsSubState extends MusicBeatSubstate
 		super();
 
 		#if DISCORD_ALLOWED
-		DiscordClient.changePresence("Controls Menu", null);
+		backend.DiscordClient.changePresence("Controls Menu", null);
 		#end
 
 		options.push([true]);

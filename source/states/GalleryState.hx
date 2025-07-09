@@ -60,7 +60,7 @@ class GalleryState extends MusicBeatState {
         FlxG.mouse.useSystemCursor = false;
         FlxG.mouse.visible = false;
 
-        DiscordClient.changePresence("Gallery", null);
+        backend.DiscordClient.changePresence("Gallery", null);
 
         if (!CustomState.dataSelect) {
             FlxG.camera.alpha = 0;
@@ -73,7 +73,7 @@ class GalleryState extends MusicBeatState {
         underlay = new FlxSprite(0, 0).makeGraphic(1, 1, 0xFF393C10);
         underlay.scale.set(1000, 1000);
         underlay.screenCenter();
-        game.add(underlay);
+        add(underlay);
 
         maigoDialogues = FlxG.save.data.seenMaigoDialogues;
 
@@ -86,16 +86,16 @@ class GalleryState extends MusicBeatState {
         main.animation.play("main", true);
         main.scale.set(3.5, 3.5);
         main.screenCenter();
-        game.add(main);
+        add(main);
 
         painting = new FlxSprite(607.5, 261.5).loadGraphic(Paths.image("menus/gallery/painting"));
         painting.scale.set(3.5, 3.5);
-        game.add(painting);
+        add(painting);
 
         paintingHitbox = new FlxSprite(550, 225).makeGraphic(160, 115, 0xFFFFFFFF);
         paintingHitbox.alpha = 0.001;
         paintingHitbox.angle = -5;
-        game.add(paintingHitbox);
+        add(paintingHitbox);
 
         art = new FlxSprite(448.5, 387.9);
         art.frames = Paths.getSparrowAtlas("menus/gallery/monitor");
@@ -103,19 +103,19 @@ class GalleryState extends MusicBeatState {
         art.animation.addByPrefix("static", "staticMonitor", 15, true);
         art.animation.play("main");
         art.scale.set(3.5, 3.5);
-        game.add(art);
+        add(art);
 
         artHitbox = new FlxSprite(418, 353).makeGraphic(88, 98, 0xFFFFFFFF);
         artHitbox.alpha = 0;
-        game.add(artHitbox);
+        add(artHitbox);
 
         music = new FlxSprite(561.5, 435.9).loadGraphic(Paths.image("menus/gallery/discman"));
         music.scale.set(3.5, 3.5);
-        game.add(music);
+        add(music);
 
         musicHitbox = new FlxSprite(527, 419).makeGraphic(105, 45, 0xFFFFFFFF);
         musicHitbox.alpha = 0;
-        game.add(musicHitbox);
+        add(musicHitbox);
 
         maigo = new FlxSprite(310, 275);
         maigo.frames = Paths.getSparrowAtlas("menus/gallery/maigo/gallery");
@@ -125,11 +125,11 @@ class GalleryState extends MusicBeatState {
         var maigoIdles = ["idleA", "idleB", "idleC"];
         maigo.animation.play(maigoIdles[FlxG.random.int(0, maigoIdles.length - 1)]);
         maigo.scale.set(3, 3);
-        game.add(maigo);
+        add(maigo);
 
         maigoHitbox = new FlxSprite(10, 275).makeGraphic(10, 10, 0xFFFFFFFF);
         maigoHitbox.alpha = 0;
-        game.add(maigoHitbox);
+        add(maigoHitbox);
 
         switch (maigo.animation.curAnim.name)
         {
@@ -168,7 +168,7 @@ class GalleryState extends MusicBeatState {
         maigoEmotes.screenCenter();
         maigoEmotes.x -= 30;
         maigoEmotes.alpha = 0.001;
-        game.add(maigoEmotes);
+        add(maigoEmotes);
 
         maigoIntroAnim = new FlxSprite();
         maigoIntroAnim.frames = Paths.getSparrowAtlas("menus/gallery/maigo/intro");
@@ -176,16 +176,16 @@ class GalleryState extends MusicBeatState {
         maigoIntroAnim.scale.set(3.3, 3.3);
         maigoIntroAnim.screenCenter();
         maigoIntroAnim.alpha = 0.001;
-        game.add(maigoIntroAnim);
+        add(maigoIntroAnim);
 
         back = new FlxSprite(10, 635).loadGraphic(Paths.image("menus/options/back"));
         back.scale.set(3, 3);
         back.updateHitbox();
         back.alpha = 0.001;
-        game.add(back);
+        add(back);
 
         maigoSpeaker = new MaigoSpeaker();
-        game.add(maigoSpeaker);
+        add(maigoSpeaker);
 
         customCursor = new FlxSprite(-100, -100); // this really sucks
         customCursor.frames = Paths.getSparrowAtlas("cursor");
@@ -194,7 +194,7 @@ class GalleryState extends MusicBeatState {
         customCursor.animation.addByPrefix("hover", "hover", 24, false);
         customCursor.animation.play("default");
         customCursor.scale.set(1.5, 1.5);
-        game.add(customCursor);
+        add(customCursor);
 
         Paths.sound("maigo/intro");
 

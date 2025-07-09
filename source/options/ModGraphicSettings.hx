@@ -14,7 +14,7 @@ import Reflect;
 
 import states.ModOptionsState;
 
-class ModGameplaySettings extends MusicBeatState {
+class ModGraphicSettings extends MusicBeatState {
     var bg:FlxSprite;
     var menuTitle:FlxSprite;
     var leaving:Bool = false;
@@ -22,16 +22,11 @@ class ModGameplaySettings extends MusicBeatState {
     var curSelected:Int = 0;
     var curValue:Dynamic;
     var options:Array<Dynamic> = [
-        ["Downscroll", "downScroll", "If checked, your notes will scroll down instead of up.", "bool"],
-        ["Ghost Tapping", "ghostTapping", "If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.", "bool"],
-        ["Disable Reset Button", "noReset", "If checked, pressing Reset won't do anything.", "bool"],
-        ["Hitsound Volume", "hitsoundVolume", "How loud should the note hitsound be?", "percent", [0, 1, 0.1, 20]],
-        ["Rating Offset", "ratingOffset", 'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.', "int", [-30, 30, 1, 20, "MS"]],
-        ["Sick Hit Window", "sickWindow", 'Changes the amount of time you have\nfor hitting a "Sick" in milliseconds.', "int", [15, 45, 1, 15, "MS"]],
-        ["Good Hit Window", "goodWindow", 'Changes the amount of time you have\nfor hitting a "Good" in milliseconds.', "int", [15, 90, 1, 30, "MS"]],
-        ["Bad Hit Window", "badWindow", 'Changes the amount of time you have\nfor hitting a "Bad" in milliseconds.', "int", [15, 135, 1, 60, "MS"]],
-        ["Safe Frames", "safeFrames", 'Changes how many frames you have for\nhitting a note earlier or late.', "float", [2, 10, 0.1, 5, ""]],
-        ["Sustains as One Note", "guitarHeroSustains", "If checked, sustain notes can't be pressed if you miss,\nand count as a single hit/miss.\nUncheck this if you prefer the old input system.", "bool"]
+        ["Low Quality", "lowQuality", "If checked, disables some events such as noteskin changes,\nimproves performance.", "bool"],
+        ["Anti-aliasing", "antialiasing", "If unchecked, disables anti-aliasing.\nWhile not used for most of the mod, disabling it can improve performance.", "bool"],
+        ["Shaders", "shaders", "If unchecked, disables shaders.\nThey're used for some visual effects, disable this if game is crashing and you have an AMD GPU.", "bool"],
+        ["GPU Caching", "cacheOnGPU", "If checked, allows the GPU to be used for caching textures, decreasing RAM usage.\nDon't turn this on if you have a low-end GPU.", "bool"],
+        ["Framerate", "framerate", "Changes the game's framerate. Can improve performance at lower rates.", "int", [30, 240, 1, 50, "FPS"]]
     ];
 
     var descriptionText:FlxText;
@@ -42,7 +37,7 @@ class ModGameplaySettings extends MusicBeatState {
     override public function create():Void {
         super.create();
 
-        DiscordClient.changePresence("Gameplay Settings Menu", null);
+        backend.DiscordClient.changePresence("Graphic Settings Menu", null);
 
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
@@ -149,6 +144,10 @@ class ModGameplaySettings extends MusicBeatState {
         }
 
         descriptionText.text = options[curSelected][2];
+        switch (options[curSelected][1]) {
+            case "antialiasing", "shaders": descriptionText.y = 600;
+            default: descriptionText.y = 640;
+        }
         curValue = Reflect.getProperty(ClientPrefs.data, options[curSelected][1]);
     }
 
@@ -169,7 +168,7 @@ class ModGameplaySettings extends MusicBeatState {
                     Reflect.setProperty(ClientPrefs.data, options[curSelected][1], actualChange);
                     curValue = Reflect.getProperty(ClientPrefs.data, options[curSelected][1]);
                 }
-                if (!silent || options[curSelected][1] == "hitsoundVolume") FlxG.sound.play(Paths.sound(options[curSelected][1] == "hitsoundVolume" ? "hitsound" : "scrollMenu"), options[curSelected][1] == "hitsoundVolume" ? ClientPrefs.data.hitsoundVolume : 0.8);
+                if (!silent) FlxG.sound.play(Paths.sound(options[curSelected][1] == "hitsoundVolume" ? "hitsound" : "scrollMenu"), options[curSelected][1] == "hitsoundVolume" ? ClientPrefs.data.hitsoundVolume : 0.8);
                 optionsAssetsArray[curSelected][1].animation.play(Std.string(Reflect.getProperty(ClientPrefs.data, options[curSelected][1])));
 
             case "int", "float":
@@ -185,6 +184,17 @@ class ModGameplaySettings extends MusicBeatState {
                 }
                 if (!silent) FlxG.sound.play(Paths.sound("scrollMenu"), 0.8);
                 optionsAssetsArray[curSelected][1].text = Reflect.getProperty(ClientPrefs.data, options[curSelected][1]) + " " + options[curSelected][4][4];
+        }
+
+        switch (options[curSelected][1]) {
+            case "framerate":
+                if(ClientPrefs.data.framerate > FlxG.drawFramerate) {
+                    FlxG.updateFramerate = ClientPrefs.data.framerate;
+                    FlxG.drawFramerate = ClientPrefs.data.framerate;
+                } else {
+                    FlxG.drawFramerate = ClientPrefs.data.framerate;
+                    FlxG.updateFramerate = ClientPrefs.data.framerate;
+                }
         }
     }
 

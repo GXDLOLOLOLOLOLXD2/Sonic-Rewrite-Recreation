@@ -20,7 +20,7 @@ class ModFlashingState extends MusicBeatState {
 
     function onCreate()
     {
-        DiscordClient.changePresence("Flashing Lights Disclaimer", null);
+        backend.DiscordClient.changePresence("Flashing Lights Disclaimer", null);
         FlxTransitionableState.skipNextTransIn = true;
         FlxTransitionableState.skipNextTransOut = true;
 
@@ -29,7 +29,7 @@ class ModFlashingState extends MusicBeatState {
         bg.screenCenter();
         bg.alpha = 0;
         bg.color = 0xFF0000FF;
-        game.add(bg);
+        add(bg);
 
         warningSound = FlxG.sound.load(Paths.sound("warning"));
 

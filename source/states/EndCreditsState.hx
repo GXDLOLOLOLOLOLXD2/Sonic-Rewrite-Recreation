@@ -56,7 +56,7 @@ class EndCreditsState extends MusicBeatState {
     override public function create():Void {
         super.create();
 
-        DiscordClient.changePresence("End Credits", null);
+        backend.DiscordClient.changePresence("End Credits", null);
 
         maxWidth = Lib.application.window.stage.fullScreenWidth;
         maxHeight = Lib.application.window.stage.fullScreenHeight;

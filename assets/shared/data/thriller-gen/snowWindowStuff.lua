@@ -381,8 +381,8 @@ function onEvent(name, value1, value2)
         runHaxeCode([[
             game.remove(game.boyfriendGroup);
             game.remove(game.dadGroup);
-            game.add(game.boyfriendGroup);
-            game.add(game.dadGroup);
+            add(game.boyfriendGroup);
+            add(game.dadGroup);
 
             game.boyfriend.x = game.dad.x + 260;
             game.boyfriend.y = game.dad.y + 350;

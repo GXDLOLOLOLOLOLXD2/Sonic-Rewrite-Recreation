@@ -169,7 +169,7 @@ class Main extends Sprite
 		#end
 
 		#if DISCORD_ALLOWED
-		DiscordClient.prepare();
+		backend.DiscordClient.prepare();
 		#end
 
 		#if android
